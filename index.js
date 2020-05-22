@@ -40,8 +40,25 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-class Person {
-
+class Person { 
+  constructor(attr){
+    this.name = attr.name;
+    this.age = attr.age;
+    this.stomach = [];
+   }
+}
+Person.prototype.eat = function(edible){
+    if(this.stomach.length < 10){
+      this.stomach.push(edible);
+    }} 
+Person.prototype.poop = function(){
+      this.stomach = [];
+    }
+Person.prototype.toString = function(){
+      return `${this.name}, ${this.age}`;
+    }
+   const personOne = new Person({'Mary', 35});
+     console.log(personOne.toString());
 }
 
 /*
@@ -59,8 +76,30 @@ class Person {
 */
 
 class Car {
-
+  constructor(attr){
+    this.model = attr.model;
+    this.milesPerGallon = attr.milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+    }
 }
+Car.prototype.fill = function (gallons){
+  this.tank = this.tank +gallons; 
+}
+Car.prototype.drive = function (distance){
+    this.odometer = this.odometer + distance;
+    this.tank = this.tank - (distance/this.milesPerGallon);
+    }
+Car.prototype.notice =function() {
+    let availableMiles = this.tank/this.milesPerGallon;
+    if (this.tank > 0) {
+    return ('You can drive ${availableMiles} more');}
+      if (this.tank<3){
+        this.milesPerGallon =this.milesPerGallon-1;
+        return ('You can drive ${availableMiles} more');}
+      else{
+      return 'You can not drive';}
+  }
 
 /*
   TASK 3
@@ -75,6 +114,11 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
+  constructor(attr){
+    this.name = attr.name;
+    this.age = attr.age;
+    this.location = attr.location;
+  }
 
 }
 
